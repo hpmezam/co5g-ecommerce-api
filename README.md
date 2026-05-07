@@ -1,8 +1,7 @@
 <h1 align="center">CO5G Ecommerce API</h1>
-<h3 align='center'>Software Engineer | AI, ML, DL & Computer Vision</h3>
+<h3 align="center">Software Engineer | AI, ML, DL & Computer Vision</h3>
 
 <p align="center">
-  <!-- Badges -->
   <img src="https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white">
   <img src="https://img.shields.io/badge/FastAPI-0.115.12-009688?style=for-the-badge&logo=fastapi&logoColor=white">
   <img src="https://img.shields.io/badge/PostgreSQL-15-336791?style=for-the-badge&logo=postgresql&logoColor=white">
@@ -11,112 +10,202 @@
 
 ---
 
-## Descipción
+## Description
 
-API backend para un sistema de ecommerce básico desarrollada con FastAPI.  
-Incluye autenticación JWT, gestión de usuarios y base para CRUD de productos.
+Backend API for a basic ecommerce system built with FastAPI.  
+Includes JWT authentication, user management, and products CRUD operations.
 
 ---
 
-## Stack Tecnológico
+## Technology Stack
 
+- Python 3.12
 - FastAPI
 - PostgreSQL
 - SQLAlchemy
-- JWT (python-jose)
+- JWT Authentication (python-jose)
 - Docker & Docker Compose
+- Pydantic
+- bcrypt
 
 ---
 
-## Configuración del entorno
+## Project Structure
 
-Clonar el repositorio:
+```bash
+app/
+├── auth/
+├── core/
+├── database/
+├── models/
+├── routes/
+├── schemas/
+├── services/
+└── main.py
+```
+
+---
+
+## Environment Configuration
+
+Clone the repository:
 
 ```bash
 git clone https://github.com/hpmezam/co5g-ecommerce-api.git
 cd co5g-ecommerce-api
-````
-Crear archivo .env basado en .env.example:
+```
+
+Create the `.env` file from `.env.example`:
+
 ```bash
 cp .env.example .env
-````
+```
 
 ---
 
-## Ejecución
+## Environment Variables
+
+```env
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=ecommerce
+
+POSTGRESQL_USERNAME=postgres
+POSTGRESQL_PASSWORD=postgres
+POSTGRESQL_DATABASE=ecommerce
+POSTGRESQL_SERVER=db
+POSTGRESQL_PORT=5432
+
+SECRET_KEY=secret_ecommerce
+JWT_SECRET_KEY=secret_ecommerce
+JWT_ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=60
+```
+
+---
+
+## Running the Project
+
+Build and start the containers:
+
 ```bash
 docker-compose up --build
-````
-La API estará disponible en:
+```
+
+The API will be available at:
+
 ```bash
 http://localhost:8000
-````
-Documentación Swagger:
+```
+
+Swagger documentation:
+
 ```bash
 http://localhost:8000/docs
-````
+```
+
 ---
-## Autenticación
-La API utiliza JWT (Bearer Token).
 
-Endpoints disponibles:
+## Authentication
 
-Registro
+The API uses JWT Bearer Authentication.
+
+### Available Endpoints
+
+Register user:
+
 ```bash
 POST /auth/register
-````
-Login
+```
+
+Login:
+
 ```bash
 POST /auth/login
-````
-Respuesta
+```
+
+Authenticated user:
+
 ```bash
+GET /auth/me
+```
+
+### Login Response
+
+```json
 {
   "access_token": "TOKEN",
   "token_type": "bearer"
 }
-````
-Usuario autenticado
-```bash
-GET /auth/me
-````
-Requiere header:
+```
+
+### Authorization Header
+
 ```bash
 Authorization: Bearer <TOKEN>
-````
+```
+
 ---
-## Estructura del proyecto
+
+## Products Endpoints
+
 ```bash
-app/
-├── routes/
-├── models/
-├── schemas/
-├── services/
-├── database/
-├── auth/
-├── utils/
-└── main.py
-````
+POST   /products
+GET    /products
+GET    /products/{id}
+PUT    /products/{id}
+DELETE /products/{id}
+```
+
+Protected endpoints require JWT authentication.
 
 ---
 
-## Seguridad implementada
+## Example Product Payload
 
-- Hash de contraseñas con bcrypt
-- Autenticación JWT
-- Validación de datos con Pydantic
-- JWT (python-jose)
-- Variables de entorno (.env)
-- Manejo de errores HTTP
+```json
+{
+  "name": "Laptop Gamer ASUS",
+  "description": "Ryzen 7, 16GB RAM, RTX 4060",
+  "price": 1499.99,
+  "stock": 10
+}
+```
 
 ---
 
-## Autor
+## Implemented Security
+
+- Password hashing with bcrypt
+- JWT Authentication
+- Request validation with Pydantic
+- Environment variables support
+- HTTP exception handling
+- Database constraints validation
+
+---
+
+## Features
+
+- User Registration
+- User Login
+- JWT Authentication
+- Products CRUD
+- PostgreSQL Integration
+- SQLAlchemy ORM
+- Dockerized Environment
+- Interactive Swagger Documentation
+
+---
+
+## Author
 
 Ing. Henry Meza
 
 <br>
+
 <div align="center">
+
   <a href="https://github.com/hpmezam">
     <img src="https://github.com/ultralytics/assets/raw/main/social/logo-social-github.png" width="3%" alt="GitHub">
   </a>
@@ -132,6 +221,7 @@ Ing. Henry Meza
   <a href="https://www.tiktok.com/@deepvisionh2m">
     <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" width="3%" alt="TikTok">
   </a>
-
+  
   <img src="https://github.com/ultralytics/assets/raw/main/social/logo-transparent.png" width="3%" alt="space">
+
 </div>
