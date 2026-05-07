@@ -13,7 +13,7 @@
 ## Description
 
 Backend API for a basic ecommerce system built with FastAPI.  
-Includes JWT authentication, user management, and products CRUD operations.
+Includes JWT authentication, user management, and product CRUD operations.
 
 ---
 
@@ -58,6 +58,9 @@ cd co5g-ecommerce-api
 Create the `.env` file from `.env.example`:
 
 ```bash
+# Windows CMD
+copy .env.example .env
+# Linux / macOS
 cp .env.example .env
 ```
 
@@ -76,8 +79,8 @@ POSTGRESQL_DATABASE=ecommerce
 POSTGRESQL_SERVER=db
 POSTGRESQL_PORT=5432
 
-SECRET_KEY=secret_ecommerce
-JWT_SECRET_KEY=secret_ecommerce
+SECRET_KEY=your_secret_key
+JWT_SECRET_KEY=your_jwt_secret_key
 JWT_ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=60
 ```
@@ -102,6 +105,12 @@ Swagger documentation:
 
 ```bash
 http://localhost:8000/docs
+```
+
+ReDoc documentation:
+
+```bash
+http://localhost:8000/redoc
 ```
 
 ---
@@ -149,6 +158,8 @@ Authorization: Bearer <TOKEN>
 
 ## Products Endpoints
 
+Protected endpoints require JWT authentication.
+
 ```bash
 POST   /products
 GET    /products
@@ -156,8 +167,6 @@ GET    /products/{id}
 PUT    /products/{id}
 DELETE /products/{id}
 ```
-
-Protected endpoints require JWT authentication.
 
 ---
 
@@ -190,7 +199,7 @@ Protected endpoints require JWT authentication.
 - User Registration
 - User Login
 - JWT Authentication
-- Products CRUD
+- Product CRUD
 - PostgreSQL Integration
 - SQLAlchemy ORM
 - Dockerized Environment
